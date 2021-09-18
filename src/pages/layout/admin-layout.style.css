@@ -1,0 +1,23 @@
+.admin-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.left {
+  width: 350px;
+  /* box-shadow: -5px 5px 15px grey; */
+  border-right: 1px solid grey;
+  height: 100vh;
+  position: fixed;
+  z-index: 999;
+}
+
+.right {
+  width: 100%;
+  margin-left: 350px;
+}
+
+.main {
+  min-height: 80vh;
+  padding: 1rem;
+}
