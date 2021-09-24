@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Alert, Spinner } from "react-bootstrap";
-import { userEmailVerification } from "../register/userAction.js";
+import { userEmailVerification } from "../admin-auth-slice/userAction";
 
 const EmailVerification = () => {
 	const dispatch = useDispatch();

@@ -11,28 +11,25 @@ import { EditCatForm } from "../category-form/EditCatForm";
 export const CategoryList = () => {
 	const dispatch = useDispatch();
 
-	const { categories} = useSelector(state => state.category);
+	const { categories, categoryResponse } = useSelector(state => state.category);
 
 	useEffect(() => {
-		!categories.length && dispatch(fetchCat());
-
-		
-	}, [ dispatch]);
+		dispatch(fetchCat());
+	}, [dispatch]);
 
 	const handleOnEdit = cat => {
 		dispatch(onCategorySelect(cat));
 	};
 
-	
+	//parent cat only
 	const parentCat = categories.filter(row => !row.parentCat);
-	
+	// child cat only
 	const childCat = categories.filter(row => row.parentCat);
 
 	const handleOnDelete = _id => {
-		if (!window.confirm("ARe you sure you want to deleete")) {
+		if (!window.confirm("Are you sure you want to delete this category")) {
 			return;
 		}
-
 
 		const hasChildCategory = childCat.filter(item => item.parentCat === _id);
 
@@ -90,7 +87,7 @@ export const CategoryList = () => {
 												</Button>{" "}
 												<Button
 													variant="danger"
-													onClick={() =>  handleOnDelete(item._id)}
+													onClick={() => handleOnDelete(item._id)}
 												>
 													Delete
 												</Button>
@@ -105,4 +102,5 @@ export const CategoryList = () => {
 		</div>
 	);
 };
+
 

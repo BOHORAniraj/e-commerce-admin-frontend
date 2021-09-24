@@ -32,3 +32,16 @@ export const verifyNewUser = async info => {
 		};
 	}
 };
+
+export const loginUser = async info => {
+	try {
+		const { data } = await axios.post(userApi + "/login", info);
+		return data;
+	} catch (error) {
+		console.log(error);
+		return {
+			status: "error",
+			message: "Invalid login details",
+		};
+	}
+};

@@ -11,18 +11,31 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PageNotFound } from "./components/page-not-found/404PageNotFound";
 import EmailVerification from "./pages/email-verification/EmailVerification";
 import Category from "./pages/category/Category";
+import { PrivateRoute } from "./components/private-route/PrivateRoute";
 
 function App() {
 	return (
 		<div>
 			<Router>
 				<Switch>
-					<Route path="/dashboard" children={<Dashboard />} />
-					<Route path="/categories" children={<Category />} />
-					<Route path="/products" children={<Product />} />
-					<Route path="/orders" children={<Order />} />
-					<Route path="/customers" children={<Customer />} />
-					<Route path="/payments" children={<Payment />} />
+					<PrivateRoute path="/dashboard">
+						<Dashboard />
+					</PrivateRoute>
+					<PrivateRoute path="/categories">
+						<Category />
+					</PrivateRoute>
+					<PrivateRoute path="/products">
+						<Product />
+					</PrivateRoute>
+					<PrivateRoute path="/orders">
+						<Order />
+					</PrivateRoute>
+					<PrivateRoute path="/customers">
+						<Customer />
+					</PrivateRoute>
+					<PrivateRoute path="/payments">
+						<Payment />
+					</PrivateRoute>
 
 					<Route path="/registration" children={<Register />} />
 					<Route path="/email-verification" children={<EmailVerification />} />
