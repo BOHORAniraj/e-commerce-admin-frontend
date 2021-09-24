@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./pages/register/userSlice";
+import userReducer from "./pages/admin-auth-slice/userSlice";
 import categoryReducer from "./pages/category/categorySlice";
 
 const store = configureStore({
