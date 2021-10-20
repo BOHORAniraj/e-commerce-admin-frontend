@@ -42,6 +42,13 @@ export const SideBarMenu = () => {
 							<i className="far fa-credit-card"></i> Payments
 						</Link>
 					</li>
+
+					<li>
+						<hr style={{ border: "1px solid white" }} />
+						<Link className="menu-item" to="/registration">
+							<i className="fa fa-users"></i> Admin User
+						</Link>
+					</li>
 				</ul>
 			</div>
 		</div>

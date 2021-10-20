@@ -45,3 +45,70 @@ export const loginUser = async info => {
 		};
 	}
 };
+export const getUser = async () => {
+	try {
+		const { data } = await axios.get(userApi, {
+			headers: {
+				authorization: window.sessionStorage.getItem("accessJWT"),
+			},
+		});
+
+		return data;
+	} catch (error) {
+		console.log(error);
+		return error?.response?.data;
+	}
+};
+
+export const logoutUser = async tokens => {
+	try {
+		const { data } = await axios.post(userApi + "/logout", tokens);
+		return data;
+	} catch (error) {
+		return {
+			status: "error",
+			message: "Error, unable to process your request, Please try again later",
+		};
+	}
+};
+
+export const updateUserProfile = async userInfo => {
+	try {
+		const { data } = await axios.patch(userApi, userInfo, {
+			headers: {
+				authorization: window.sessionStorage.getItem("accessJWT"),
+			},
+		});
+
+		return data;
+	} catch (error) {
+		console.log(error);
+		return error?.response?.data;
+	}
+};
+
+export const updateUserPassword = async passInfo => {
+	try {
+		const { data } = await axios.post(userApi + "/password-update", passInfo, {
+			headers: {
+				authorization: window.sessionStorage.getItem("accessJWT"),
+			},
+		});
+
+		return data;
+	} catch (error) {
+		console.log(error);
+		return error?.response?.data;
+	}
+};
+
+export const resetForgetPassword = async passInfo => {
+	try {
+		const { data } = await axios.post(userApi + "/reset-password", passInfo);
+
+		return data;
+	} catch (error) {
+		console.log(error);
+		return { status: "error", message: error.message };
+	}
+};

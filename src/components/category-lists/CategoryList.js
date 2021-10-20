@@ -2,16 +2,13 @@ import React, { useEffect } from "react";
 import { ListGroup, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCat, deleteCat } from "../../pages/category/categoryAction";
-import {
-	catRespReset,
-	onCategorySelect,
-} from "../../pages/category/categorySlice";
+import { onCategorySelect } from "../../pages/category/categorySlice";
 import { EditCatForm } from "../category-form/EditCatForm";
 
 export const CategoryList = () => {
 	const dispatch = useDispatch();
 
-	const { categories, categoryResponse } = useSelector(state => state.category);
+	const { categories } = useSelector(state => state.category);
 
 	useEffect(() => {
 		dispatch(fetchCat());
@@ -102,5 +99,3 @@ export const CategoryList = () => {
 		</div>
 	);
 };
-
-

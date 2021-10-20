@@ -6,6 +6,11 @@ const initialState = {
 	isPending: false,
 	userRegisterResponse: {},
 	userLoginResp: {},
+	userUpdateResp: {},
+	isAutoLoginPending: false,
+	showResetPasswordForm: false,
+	resetPasswordRequestResponse: {},
+	passwordResettingEmail: "",
 };
 
 const userSlice = createSlice({
@@ -17,7 +22,6 @@ const userSlice = createSlice({
 		},
 
 		responseSuccess: (state, { payload }) => {
-			console.log(payload, "from slice");
 			state.isPending = false;
 			state.userRegisterResponse = payload || {};
 		},
@@ -29,11 +33,40 @@ const userSlice = createSlice({
 			state.isPending = false;
 		},
 
+		profileUpdateSuccess: (state, { payload }) => {
+			state.userUpdateResp = payload;
+			state.isPending = false;
+		},
+
+		passwordUpdateSuccess: (state, { payload }) => {
+			state.userUpdateResp = payload;
+			state.isPending = false;
+		},
+		userLogOutSuccess: state => {
+			state.userInfo = {};
+			state.isLoggedIn = false;
+			state.isAutoLoginPending = false;
+		},
 		loginFail: (state, { payload }) => {
 			state.isPending = false;
 			state.userLoginResp = payload || {};
 		},
-
+		loginAuto: state => {
+			state.isLoggedIn = true;
+			state.isAutoLoginPending = false;
+		},
+		autoLoginPending: (state, { payload }) => {
+			state.isAutoLoginPending = payload;
+		},
+		switchLoginResetPassForm: state => {
+			state.showResetPasswordForm = !state.showResetPasswordForm;
+		},
+		restPassResponse: (state, { payload }) => {
+			state.isPending = false;
+			state.resetPasswordRequestResponse = payload.data;
+			state.passwordResettingEmail = payload.email;
+			state.showResetPasswordForm = payload.data.status === "success";
+		},
 		requestFail: (state, { payload }) => {
 			state.isPending = false;
 			state.userRegisterResponse = payload || {};
@@ -48,6 +81,13 @@ export const {
 	responseSuccess,
 	loginSuccess,
 	loginFail,
+	loginAuto,
+	userLogOutSuccess,
+	autoLoginPending,
+	profileUpdateSuccess,
+	passwordUpdateSuccess,
+	switchLoginResetPassForm,
+	restPassResponse,
 	requestFail,
 } = actions;
 

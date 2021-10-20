@@ -25,7 +25,7 @@ export const EditCatForm = () => {
 			parentCat: null,
 			_id: selectedCategory._id,
 		});
-	}, [selectedCategory.name]);
+	}, [selectedCategory]);
 
 	const onHide = () => {
 		dispatch(onCategorySelect());

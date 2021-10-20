@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+/* ========= registration page ============== */
 .register-page {
 }
 .reg-form {
@@ -5,4 +9,9 @@
   margin: auto;
   margin-top: 20vh;
   box-shadow: -5px 5px 10px grey;
+}
+
+.product-list-category {
+  max-height: 250px;
+  overflow: scroll;
 }
